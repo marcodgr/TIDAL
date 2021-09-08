@@ -913,7 +913,6 @@ DROP TABLE IF EXISTS public.keywords;
 CREATE TABLE public.keywords (
   idK INTEGER NOT NULL,
   "name" character varying(40) 
-	        COLLATE pg_catalog."fr_FR.utf8"
 	        DEFAULT NULL,
   CONSTRAINT PK_keywords PRIMARY KEY (idK)
 );
@@ -1287,13 +1286,10 @@ INSERT INTO public.keywords (idK, "name") VALUES
 DROP TABLE IF EXISTS public.meridien;
 CREATE TABLE public.meridien (
   code character varying(5) 
-        COLLATE pg_catalog."fr_FR.utf8"
         NOT NULL,
   nom character varying(20) 
-        COLLATE pg_catalog."fr_FR.utf8" 
         NOT NULL,
   element character varying(1) 
-        COLLATE pg_catalog."fr_FR.utf8"
         NOT NULL,
   yin boolean NOT NULL,
   CONSTRAINT PK_meridien PRIMARY KEY (code)
@@ -1352,13 +1348,10 @@ DROP TABLE IF EXISTS public.patho;
 CREATE TABLE public.patho (
   idP INTEGER NOT NULL, -- AUTO_INCREMENT,
   mer character varying(5) 
-	        COLLATE pg_catalog."fr_FR.utf8"
 	        NOT NULL,
   "type" character varying(10) 
-	        COLLATE pg_catalog."fr_FR.utf8" 
           NOT NULL,
   "desc" character varying(50) 
-	        COLLATE pg_catalog."fr_FR.utf8" 
           NOT NULL,
   CONSTRAINT PK_patho PRIMARY KEY (idP)
 );
@@ -1513,7 +1506,6 @@ DROP TABLE IF EXISTS public.symptome;
 CREATE TABLE public.symptome (
   idS INTEGER NOT NULL, --AUTO_INCREMENT,
   "desc" VARCHAR(256) 
-          COLLATE pg_catalog."fr_FR.utf8" 
           NOT NULL,
   CONSTRAINT PK_symptome PRIMARY KEY (idS)
 );
