@@ -6,7 +6,7 @@
     <head>
     {block name="head"}
 
-        <title>{if $titre}{$titre}{else}{"Acupuncteurs"}{/if}</title>
+        <title>{if isset($titre)}{$titre|cat:" - "}{/if}Acupuncteurs</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <script src="js/script.js"></script>
@@ -30,7 +30,7 @@
         {/block}
         </header>
         <main role="application">
-            {block name=main}{/block}
+            {block name="main"}{/block}
         </main>
         <footer>
             {block name="footer"}
