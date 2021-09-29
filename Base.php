@@ -32,16 +32,37 @@ foreach  ($conn->query($sql) as $row) {
 
 
 
+/*$user='postgres';
+$pass='1234567890';
+$dbh = new PDO('pgsql:host=localhost;dbname=tidal', $user, $pass);*/
 $user='postgres';
 $pass='1234567890';
 $dbh = new PDO('pgsql:host=localhost;dbname=tidal', $user, $pass);
 
-function getPatho(){
+$tableauPatho=getPatho($dbh);
+//print_r($tableauPatho);
+
+
+print_r(getElementbyIdp($tableauPatho,4 ));
+
+
+
+
+function getElementbyIdp($tab, $idp){
+    return $tab[$idp-1];
+}
+
+function 
+
+
+
+function getPatho(PDO $dbh){
+    
     $query = $dbh->prepare("SELECT * FROM patho");
     $query->execute();
     $result = $dbh->query("SELECT * FROM patho");
 
-    $tab = array();
+    $tableauPathologie = array();
     
 
     foreach($result as $row){
@@ -50,12 +71,17 @@ function getPatho(){
         var_dump($row['type'] . "\t");
         var_dump($row['desc'] . "\n");*/
         $test=new Pathologie($row['idp'], $row['mer'], $row['type'], $row['desc']);
-        array_push($tab, $test);
+        array_push($tableauPathologie, $test);
     }
+    
 
-    print_r($tab);
-    return $tab;
+  
+    return $tableauPathologie;
 }
+
+
+
+
 
 ?>
 
