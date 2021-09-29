@@ -49,9 +49,6 @@ class Base {
         $query = $this->dbh->prepare("SELECT * FROM patho");
         $query->execute();
         $result = $this->dbh->query("SELECT * FROM patho");
-
-
-        
        
         foreach($result as $row){
             $patho=new Pathologie($row['idp'], $row['mer'], $row['type'], $row['desc']);
