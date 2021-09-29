@@ -1,18 +1,18 @@
 {extends file="layout.tpl"}
 {block name="main"}
-    <h2 align="center">Se connecter :</h2>
-    <form method="POST" action="">
+    <h2 align="center">S'inscrire :</h2>
+    <form method="POST" action="check_signup.php">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="dupont@france.fr">
+            <label for="email">Mail</label>
+            <input class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Mail">
         </div>
         <div class="form-group">
             <label for="mdp">Mot de passe</label>
             <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe">
-            <input type="checkbox" onclick="myFunction1()"> Afficher le mot de passe
+            <input type="checkbox" onclick="myFunction()"> Afficher le mot de passe
             <script>
-                function myFunction1() {
-                    var x = document.getElementById("mdp1");
+                function myFunction() {
+                    var x = document.getElementById("mdp");
                     if (x.type === "password") {
                         x.type = "text";
                     } else {
@@ -21,6 +21,6 @@
                 }
             </script>
         </div>
-        <button type="submit" class="btn btn-primary" style="margin-left: 100px">Connexion</button>
+        <button type="submit" class="btn btn-primary" style="margin-left: 100px">Inscription</button>
     </form>
 {/block}
