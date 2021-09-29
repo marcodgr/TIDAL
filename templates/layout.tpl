@@ -30,6 +30,7 @@
         {/block}
         </header>
         <main role="application">
+            {block name="alert"}{/block}
             {block name="main"}{/block}
         </main>
         <footer>

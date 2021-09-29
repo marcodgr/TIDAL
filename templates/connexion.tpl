@@ -1,4 +1,13 @@
 {extends file="layout.tpl"}
+
+{block name="alert"}
+    {if isset($error)}
+        <div class="alert alert-warning">
+            Mot de passe ou email incorrecte
+        </div>
+    {/if}
+{/block}
+
 {block name="main"}
     <h2 align="center">Se connecter :</h2>
     <form method="POST" action="">
