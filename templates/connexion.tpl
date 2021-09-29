@@ -1,5 +1,4 @@
 {extends file="layout.tpl"}
 {block name="main"}
-    <h1>OUIIIIIII</h1>
-    {$meridien}
+    Faire le bail de connexion
 {/block}
