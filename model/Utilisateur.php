@@ -37,7 +37,7 @@
 
         public function insertUtilisateur(){
             if(verifConnexion()==true){
-                return false //l'utilisateur existe deja
+                return false; //l'utilisateur existe deja
             }
             $query = $dbh->prepare("INSERT INTO utilisateurs VALUES (:email, :mdp)");
             $query->bindParam(":email", $this->email);
