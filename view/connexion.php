@@ -1,9 +1,5 @@
 <?php
 
-session_start();
-
-require_once 'utils/smarty.php';
-
 if ($_SERVER['REQUEST_METHOD'] == "GET"){
     $smarty->assign("titre", "Connexion");
     
@@ -19,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET"){
     $user = new Utilisateur($_POST["email"], $_POST["mdp"]);
     
     if($user->verifConnexion()){
-        echo "Félicitation";
+        $_SESSION["user_id"] = $user->email;
+        header('Status: 301 Moved Permanently', false, 301);      
+        header("Location: /index.php");
     } else {
         // Si mauvaise connexion
         header('Status: 301 Moved Permanently', false, 301);      

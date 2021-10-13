@@ -22,9 +22,15 @@
                     <a href="/" class="navbar-brand">
                         Titre
                     </a>
+                    {if isset($user_id)}
+                    <div class="d-flex">
+                        <a href="/?page=logout">{{$user_id}} - Deconnexion</a>
+                    </div>
+                    {else}
                     <div class="d-flex">
                         <a href="/?page=login">Connexion</a>
                     </div>
+                    {/if}
                 </div>
             </nav>
         {/block}
