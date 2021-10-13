@@ -12,7 +12,12 @@ $base->getPatho($base->getDbh());
 $base->getMeridien($base->getDbh());
 
 
-$base->afficheMeridien();
+//$base->affichePatho();
+
+//$base->afficheMeridien();
+
+
+
 
 //$base->getMeridien($base->getDbh());
 //$base->getCode('V');
@@ -23,9 +28,9 @@ $base->afficheMeridien();
 
 class Base {
         
-    protected $dbh;
-    protected $tableauPatho=array();
-    protected $tableauMeridien=array();
+    public $dbh;
+    public $tableauPatho=array();
+    public $tableauMeridien=array();
 
 
 
@@ -42,6 +47,12 @@ class Base {
     /* PATHOLOGIE !*/
     function getElementbyIdp($tab, $idp){
         return $tab[$idp-1];
+    }
+    function getTaille(){
+        return sizeof($this->tableauPatho);
+    }
+    function getTabPatho(){
+        return $this->tableauPatho;
     }
 
     function getPatho(PDO $dbh){
@@ -60,6 +71,8 @@ class Base {
 
     function affichePatho(){
         print_r($this->tableauPatho);
+        //print_r($this->tableauPatho[0]->getIdp());
+
     }
 
 
@@ -76,6 +89,7 @@ class Base {
         foreach($result as $row){
             $meridien=new Meridien($row['code'], $row['nom'], $row['element'], $row['yin']);
             array_push($this->tableauMeridien, $meridien);
+           
         }
     }
 

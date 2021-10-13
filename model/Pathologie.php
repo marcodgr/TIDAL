@@ -11,6 +11,19 @@ class Pathologie {
         $this->type=$_type;
         $this->desc=$_desc;
     }
+    public function getIdp(){
+        return $this->idp;
+    }
+    public function getMer(){
+        return $this->mer;
+    }
+    public function getType(){
+        return $this->type;
+    }
+    public function getDesc(){
+        return $this->desc;
+    }
+
 
     
 }
