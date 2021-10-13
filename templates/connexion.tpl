@@ -32,4 +32,5 @@
         </div>
         <button type="submit" class="btn btn-primary" style="margin-left: 100px">Connexion</button>
     </form>
+    <a href="/?page=signin">Inscription</a>
 {/block}

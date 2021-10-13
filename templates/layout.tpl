@@ -23,7 +23,7 @@
                         Titre
                     </a>
                     <div class="d-flex">
-                        <a href="#">Connexion</a>
+                        <a href="/?page=login">Connexion</a>
                     </div>
                 </div>
             </nav>
