@@ -1,6 +1,8 @@
 <?php
 require_once 'utils/smarty.php';
 
+require_once 'model/Base.php';
+
 $smarty->assign("titre", "Bienvenue");
 
 
