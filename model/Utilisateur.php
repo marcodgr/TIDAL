@@ -9,6 +9,9 @@ class Utilisateur {
     protected $password = "";
 
     public function __construct(string $_email, string $_password){
+        require_once "model/Base.php";
+
+        $this->BaseSQL = new Base();
 
         $this->password=hash("sha256",$_password);
 
@@ -19,11 +22,8 @@ class Utilisateur {
 
 
     public function verifConnexion(){
-        require_once('utils/pdo_conn.php');
-        $query = $dbh->prepare("SELECT * FROM utilisateurs WHERE email = :email");
-        $query->bindParam(":email", $this->email);
-        $query->execute();
-        $user = $query->fetch(PDO::FETCH_OBJ);
+
+        $user = $this->BaseSQL->getUser($this->email);
 
         if(!$user){
             return false;
@@ -34,14 +34,10 @@ class Utilisateur {
 
 
     public function insertUtilisateur(){
-        require_once('utils/pdo_conn.php');
         if($this->verifConnexion()){
             return false; //l'utilisateur existe deja
         }
-        $query = $dbh->prepare("INSERT INTO utilisateurs VALUES (:email, :mdp)");
-        $query->bindParam(":email", $this->email);
-        $query->bindParam(":mdp", $this->password);
-        $query->execute();
+        $this->BaseSQL->insertUser($this->email, $this->password);
         return true;
     }
 }

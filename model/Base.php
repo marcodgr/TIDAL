@@ -182,6 +182,21 @@ class Base {
     function afficheMeridien(){
         print_r($this->tableauMeridien);
     }
+
+    function getUser($email){
+        $query = $this->dbh->prepare("SELECT * FROM utilisateurs WHERE email = :email");
+        $query->bindParam(":email", $email);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function insertUser($email, $password){
+        $query = $this->dbh->prepare("INSERT INTO utilisateurs VALUES (:email, :mdp)");
+        $query->bindParam(":email", $this->email);
+        $query->bindParam(":mdp", $this->password);
+        $query->execute();
+        return true;
+    }
        
 
 }
