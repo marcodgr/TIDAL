@@ -1,17 +1,18 @@
 <?php
-class Pathologie {
+class Pathologie implements JsonSerializable{
     protected $idp = "";
     protected $mer = "";
     protected $type = "";
     protected $desc = "";
     protected $symptome ="";
   
-    public function __construct(string $_idp, string $_mer, string $_type, string $_desc, string $_symptome){
-        $this->idp=$_idp;
-        $this->mer=$_mer;
-        $this->type=$_type;
-        $this->desc=$_desc;
-        $this->symptome=$_symptome;
+
+    public function __construct(string $idp, string $mer, string $type, string $desc, $symptome=null){
+        $this->idp=$idp;
+        $this->mer=$mer;
+        $this->type=$type;
+        $this->desc=$desc;
+        $this->symptome=$symptome;
     }
     public function getIdp(){
         return $this->idp;
@@ -27,6 +28,16 @@ class Pathologie {
     }
     public function getSymptome(){
         return $this->symptome;
+    }
+    public function jsonSerialize()
+    {
+      return [
+        'idp' => $this->idp,
+        'mer' => $this->mer,
+        'type' => $this->type,
+        'desc' => $this->desc,
+        'symptomes' => $this->symptome,
+      ];
     }
 
 

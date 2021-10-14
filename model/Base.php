@@ -3,6 +3,7 @@
 <?php
 include_once 'Pathologie.php';
 include_once 'Meridien.php';
+include_once 'Symptome.php';
 
 
 
@@ -55,7 +56,7 @@ class Base {
         return $this->tableauPatho;
     }
 
-    function getPatho(PDO $dbh){
+    function getPatho(){ //TODO Arreter d'utiliser cette merde
         
         $query = $this->dbh->prepare("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
         INNER JOIn symptpatho sp
@@ -75,6 +76,65 @@ class Base {
             array_push($this->tableauPatho, $patho);
             
         }
+        
+        return $this->tableauPatho;
+    }
+
+    function getPathoSympto(){ //TODO utiliser celle la
+
+        $tempsympto = array();
+        
+        $query = $this->dbh->prepare("SELECT * FROM patho");
+        $query->execute();
+        $result = $this->dbh->query("SELECT * FROM patho");
+       
+        foreach($result as $row){
+            $query2 = $this->dbh->prepare("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = '".$row[0]."';");
+            $query2->execute();
+            $result2 = $this->dbh->query("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = '".$row[0]."';");
+            foreach($result2 as $row2){
+                array_push($tempsympto, new Symptome($row2[0], $row2[1]));
+            }
+            $patho=new Pathologie($row[0], $row[1], $row[2], $row[3], $tempsympto);
+            
+            array_push($this->tableauPatho, $patho);
+            
+        }
+        
+        return $this->tableauPatho;
+    }
+
+
+
+    function getPathologie(){
+       
+        $query = $this->dbh->prepare("SELECT * FROM patho");
+        $query->execute();
+        $result = $this->dbh->query("SELECT * FROM patho");
+       
+        foreach($result as $row){
+            $patho=new Pathologie($row[0], $row[1], $row[2], $row[3]);
+            array_push($this->tableauPatho, $patho);
+            
+        }
+        
+        return $this->tableauPatho;
+    }
+
+
+    function getSymptome(){
+       
+        $query = $this->dbh->prepare("SELECT * FROM symptome");
+        $query->execute();
+        $result = $this->dbh->query("SELECT * FROM symptome");
+       
+        foreach($result as $row){
+            $sympto=new Symptome($row[0], $row[1]);
+            array_push($this->tableauPatho, $sympto);
+            
+        }
+        
+        return $this->tableauPatho;
     }
 
     function affichePatho(){
@@ -85,7 +145,7 @@ class Base {
 
 
     /* MERIDIEN !*/
-    function getMeridien(PDO $dbh){
+    function getMeridien(){
         
         $query = $this->dbh->prepare("SELECT * FROM meridien");
         $query->execute();
@@ -99,6 +159,9 @@ class Base {
             array_push($this->tableauMeridien, $meridien);
            
         }
+
+
+        return $this->tableauMeridien;
     }
 
     public function getCode($code){
