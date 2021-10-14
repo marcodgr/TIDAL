@@ -20,7 +20,7 @@
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
                     <a href="/" class="navbar-brand">
-                        Titre
+                        {if isset($titre)}{$titre|cat:" - "}{/if}Acupuncteurs
                     </a>
                     {if isset($user_id)}
                     <div class="d-flex">

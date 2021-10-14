@@ -57,12 +57,20 @@ class Base {
 
     function getPatho(PDO $dbh){
         
-        $query = $this->dbh->prepare("SELECT * FROM patho");
+        $query = $this->dbh->prepare("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
+        INNER JOIn symptpatho sp
+        ON s.ids = sp.ids
+        INNER join patho p
+        ON sp.idp = p.idp;");
         $query->execute();
-        $result = $this->dbh->query("SELECT * FROM patho");
+        $result = $this->dbh->query("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
+        INNER JOIn symptpatho sp
+        ON s.ids = sp.ids
+        INNER join patho p
+        ON sp.idp = p.idp;");
        
         foreach($result as $row){
-            $patho=new Pathologie($row['idp'], $row['mer'], $row['type'], $row['desc']);
+            $patho=new Pathologie($row[0], $row[1], $row[2], $row[3], $row[4]);
             
             array_push($this->tableauPatho, $patho);
             

@@ -16,10 +16,9 @@
         {/if}
         
             <div class="card" style="width: 18rem; margin :100px">
-                <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{$patho->getDesc()}</h5>
-                    <p class="card-text">meridien : {$patho->getMer()} / type : {$patho->getType()}</p>
+                    <p class="card-text">Symptomes : {$patho->getSymptome()}</p>
                     <a href="#" class="btn btn-primary">Plus d'informations</a>
                 </div>
             </div>
