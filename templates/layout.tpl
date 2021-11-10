@@ -8,8 +8,8 @@
 
         <title>{if isset($titre)}{$titre|cat:" - "}{/if}Acupuncteurs</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <script src="js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <script src="/js/script.js"></script>
         {block name="extra_head"}{/block}
 
     {/block}
@@ -24,11 +24,11 @@
                     </a>
                     {if isset($user_id)}
                     <div class="d-flex">
-                        <a href="/?page=logout">{{$user_id}} - Deconnexion</a>
+                        <a href="/index.php/logout">{{$user_id}} - Deconnexion</a>
                     </div>
                     {else}
                     <div class="d-flex">
-                        <a href="/?page=login">Connexion</a>
+                        <a href="/index.php/login">Connexion</a>
                     </div>
                     {/if}
                 </div>

@@ -1,5 +1,3 @@
-
-
 <?php
 include_once 'Pathologie.php';
 include_once 'Meridien.php';
@@ -57,13 +55,6 @@ class Base {
     }
 
     function getPatho(){ //TODO Arreter d'utiliser cette merde
-        
-        $query = $this->dbh->prepare("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
-        INNER JOIn symptpatho sp
-        ON s.ids = sp.ids
-        INNER join patho p
-        ON sp.idp = p.idp;");
-        $query->execute();
         $result = $this->dbh->query("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
         INNER JOIn symptpatho sp
         ON s.ids = sp.ids
@@ -84,13 +75,9 @@ class Base {
 
         $tempsympto = array();
         
-        $query = $this->dbh->prepare("SELECT * FROM patho");
-        $query->execute();
         $result = $this->dbh->query("SELECT * FROM patho");
        
         foreach($result as $row){
-            $query2 = $this->dbh->prepare("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = '".$row[0]."';");
-            $query2->execute();
             $result2 = $this->dbh->query("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = '".$row[0]."';");
             foreach($result2 as $row2){
                 array_push($tempsympto, new Symptome($row2[0], $row2[1]));
@@ -107,9 +94,6 @@ class Base {
 
 
     function getPathologie(){
-       
-        $query = $this->dbh->prepare("SELECT * FROM patho");
-        $query->execute();
         $result = $this->dbh->query("SELECT * FROM patho");
        
         foreach($result as $row){
@@ -123,9 +107,6 @@ class Base {
 
 
     function getSymptome(){
-       
-        $query = $this->dbh->prepare("SELECT * FROM symptome");
-        $query->execute();
         $result = $this->dbh->query("SELECT * FROM symptome");
        
         foreach($result as $row){
@@ -139,21 +120,12 @@ class Base {
 
     function affichePatho(){
         print_r($this->tableauPatho);
-        //print_r($this->tableauPatho[0]->getIdp());
-
     }
 
 
     /* MERIDIEN !*/
     function getMeridien(){
-        
-        $query = $this->dbh->prepare("SELECT * FROM meridien");
-        $query->execute();
         $result = $this->dbh->query("SELECT * FROM meridien");
-
-
-        
-
         foreach($result as $row){
             $meridien=new Meridien($row['code'], $row['nom'], $row['element'], $row['yin']);
             array_push($this->tableauMeridien, $meridien);
@@ -165,12 +137,6 @@ class Base {
     }
 
     public function getCode($code){
-        /*$query = $this->dbh->prepare("SELECT * FROM meridien WHERE code = :code");
-        $query->bindParam(":code", $this->code, PDO::PARAM_STR);
-        
-        $query->execute();
-        
-        return $query->fetch();*/
         for($i=0;$i<sizeof($this->tableauMeridien);$i++){
             if($this->tableauMeridien[i].['code']==$code){
                 print_r($this->tableauMeridien[i]);
@@ -192,8 +158,8 @@ class Base {
 
     function insertUser($email, $password){
         $query = $this->dbh->prepare("INSERT INTO utilisateurs VALUES (:email, :mdp)");
-        $query->bindParam(":email", $this->email);
-        $query->bindParam(":mdp", $this->password);
+        $query->bindParam(":email", $email);
+        $query->bindParam(":mdp", $password);
         $query->execute();
         return true;
     }
