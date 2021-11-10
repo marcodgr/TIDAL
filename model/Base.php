@@ -1,7 +1,7 @@
 <?php
-include_once 'Pathologie.php';
-include_once 'Meridien.php';
-include_once 'Symptome.php';
+require_once 'Pathologie.php';
+require_once 'Meridien.php';
+require_once 'Symptome.php';
 
 
 
@@ -9,20 +9,6 @@ include_once 'Symptome.php';
 $base = new Base();
 $base->getPatho($base->getDbh());
 $base->getMeridien($base->getDbh());
-
-
-//$base->affichePatho();
-
-//$base->afficheMeridien();
-
-
-
-
-//$base->getMeridien($base->getDbh());
-//$base->getCode('V');
-
-
-
 
 
 class Base {
@@ -54,7 +40,7 @@ class Base {
         return $this->tableauPatho;
     }
 
-    function getPatho(){ //TODO Arreter d'utiliser cette merde
+    function getPatho(){ 
         $result = $this->dbh->query("SELECT p.idp, p.mer, p.type, p.desc, s.desc FROM symptome s
         INNER JOIn symptpatho sp
         ON s.ids = sp.ids
@@ -71,14 +57,18 @@ class Base {
         return $this->tableauPatho;
     }
 
-    function getPathoSympto(){ //TODO utiliser celle la
+    function getPathoSympto(){
 
         $tempsympto = array();
         
         $result = $this->dbh->query("SELECT * FROM patho");
        
         foreach($result as $row){
-            $result2 = $this->dbh->query("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = '".$row[0]."';");
+            $query = $this->dbh->prepare("select * from symptome s join symptpatho sp on (s.ids = sp.ids) where sp.idp = :row;");
+            $query->bindParam(":row", $row[0]);
+            $query->execute();
+            $result2 = $query->fetchAll();
+            
             foreach($result2 as $row2){
                 array_push($tempsympto, new Symptome($row2[0], $row2[1]));
             }
@@ -164,14 +154,4 @@ class Base {
         return true;
     }
        
-
 }
-
-
-
-?>
-
-
-
-
-

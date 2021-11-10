@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET"){
         // Si mauvaise inscription
        $_SESSION['error'] = "mdp";
        header('Status: 301 Moved Permanently', false, 301);      
-       header("Location: /index.php?page=login");
+       header("Location: /index.php/login");
        exit();
 } else {
     echo "Method not allowed";

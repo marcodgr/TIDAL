@@ -13,7 +13,7 @@
 {/block}
 {block name="main"}
     <h2 align="center">S'inscrire :</h2>
-    <form method="POST" action="index.php?page=signin">
+    <form method="POST" action="">
         <div class="form-group">
             <label for="email">Mail</label>
             <input class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Mail">

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET"){
     } else {
         // Si mauvaise connexion
         header('Status: 301 Moved Permanently', false, 301);      
-        header("Location: /index.php?page=login");
+        header("Location: /index.php/login");
         $_SESSION['error'] = "mdp";
         exit();
     }
