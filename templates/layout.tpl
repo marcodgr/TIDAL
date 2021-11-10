@@ -40,6 +40,7 @@
             {block name="main"}{/block}
         </main>
         <footer>
+            <a href="/index.php/api">API</a>
             {block name="footer"}
             Les Bg &copy; 2021
             {/block}

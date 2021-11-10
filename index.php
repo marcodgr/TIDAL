@@ -24,9 +24,6 @@ if (array_key_exists(0, $request)) {
             case "signup":
                 require_once 'view/inscription.php';
                 break;
-            case "accueil":
-                require_once 'view/accueil.php';
-                break;
             case "logout":
                 require_once 'view/deconnexion.php';
                 break;
@@ -34,9 +31,8 @@ if (array_key_exists(0, $request)) {
                 require_once 'view/api.php';
                 break;
             default:
-                echo "Page introuvable.";
-                http_response_code(404);
-                exit();
+                require_once 'view/accueil.php';
+                break;
         }
 
     
