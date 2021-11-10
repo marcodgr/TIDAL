@@ -62,7 +62,6 @@ if (array_key_exists(1, $request)) {
         case 'pathologies':
             // routes : /pathologies/all
             //          /pathologies/byKeyword/:keyword
-            var_dump($request);
             if (array_key_exists(1, $request)) {
                 if ($request[2] == 'all') {
                     $data = $dbd->getPathologie();
@@ -81,13 +80,12 @@ if (array_key_exists(1, $request)) {
             exit();
 
         default:
-            echo "Page introuvable.";
-            http_response_code(404);
+            $smarty->display("templates/api_index.tpl");
+            
             exit();
     }
 } else {
-    echo "Page introuvable.";
-    http_response_code(404);
+    $smarty->display("templates/api_index.tpl");
     exit();
 }
 
