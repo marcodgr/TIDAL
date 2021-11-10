@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="mdp">Mot de passe</label>
             <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe">
-            <input type="checkbox" onclick="show_password()"> Afficher le mot de passe
+            <input type="checkbox" onclick="show_password()" id="display_password"> <label for="display_password">Afficher le mot de passe</label>
         </div>
         <button type="submit" class="btn btn-primary" style="margin-left: 100px">Connexion</button>
     </form>
